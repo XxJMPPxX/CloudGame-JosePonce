@@ -2,15 +2,16 @@ import {Unity, useUnityContext} from "react-unity-webgl";
 
 function Game() {
     const { unityProvider, sendMessage } = useUnityContext({
-        loaderUrl: "/UnityReact.loader.js",
-        dataUrl: "/UnityReact.data.unityweb",
-        frameworkUrl: "/UnityReact.framework.js.unityweb",
-        codeUrl: "/UnityReact.wasm.unityweb",
+        loaderUrl: "/Game.loader.js",
+        dataUrl: "/Game.data.unityweb",
+        frameworkUrl: "/Game.framework.js.unityweb",
+        codeUrl: "/Game.wasm.unityweb",
     });
 
-    function handleClickSpawnEnemies() {
-        sendMessage("GameObject", "SpawnEnemies");
+    function handleClickResetGame() {
+        sendMessage("GameManager", "ResetGame");
     }
+    
 
 
     return (
@@ -21,7 +22,7 @@ function Game() {
                     <Unity unityProvider={unityProvider} className="centered-unity" />
 
                     <div className="centered-content">
-                        <button onClick={handleClickSpawnEnemies}>Spawn Enemies</button>
+                        <button onClick={handleClickResetGame}>Reset</button>
                     </div>
 
                 </div>
@@ -30,6 +31,5 @@ function Game() {
         </>
     );
 }
-
 
 export default Game
